@@ -1,28 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Heal : MonoBehaviour
 {
-
-    [SerializeField] Gamemanager gamemanager;
-    
-    
+    [SerializeField] private GameManager gamemanager;
+    [SerializeField] private int heal;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            gamemanager.SumarVida(10);
+            gamemanager.Sumarvida(heal);
             Destroy(this.gameObject);
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-        
+
     }
-
-
-
 
 
 

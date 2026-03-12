@@ -1,24 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
-public class Gamemanager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    [SerializeField] private int vidajugador
-
-    public void SumarVida(int vida)
+    [SerializeField] private int healthPlayer = 100;
+    public void Sumarvida(int heal)
     {
-     
-        
-        if (vidajugador < 100)
+        if (healthPlayer < 100)
         {
-            vidajugador = 100;
+            healthPlayer += heal;
         }
-        else 
+
+        else
         {
-            Debug.Log("no cura");
+            healthPlayer = 100;
+            Debug.Log("No curo");
         }
-        
+    }
+    public void RestarVida(int _Damage)
+
+    {
+        if (healthPlayer > 0)
+        {
+            healthPlayer -= _Damage;
+            Debug.Log("restar" + _Damage + "puntos de vida");
+
+        }
+
     }
 }

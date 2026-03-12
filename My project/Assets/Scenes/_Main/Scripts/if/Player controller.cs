@@ -1,46 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using JetBrains.Annotations;
+﻿using System;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
+using Unity.VisualScripting;
 
-public class Playercontroller : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
-   
-    [SerializeField] private Rigidbody2D _rb2D;
-    [SerializeField] private float fuerzaSalto;
+    [SerializeField] private Rigidbody2D _rb2d;
+    [SerializeField] private float fuerzaSalto = 125f;
     [SerializeField] private bool isGround;
     [SerializeField] private float moveSpeed = 5f;
-    
+
     private void Awake()
     {
-
-        _rb2D = GetComponent<Rigidbody2D>();
+        _rb2d = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
-    {
-
-    }
-
-    private void Update()
+    // || &&
+    void Update()
     {
         if (Input.GetButtonDown("Jump") && isGround)
         {
-            _rb2D.AddForce(Vector2.up * fuerzaSalto);
+            _rb2d.AddForce(Vector2.up * fuerzaSalto);
         }
 
-     private void FixedUpdate()
-    {
-        float moveInput = Input.GetAxis("Horizontal");
-        _rb2D.velocity = new Vector2(moveInput * moveSpeed, _rb2D.velocity.y);
 
-        float moveInput2 = Input.GetAxis("Horizontal");
-        _rb2D.velocity = new Vector2(moveInput * moveSpeed, _rb2D.velocity.y);
     }
 
+    private void FixedUpdate()
+    {
 
-    private void OnCollisionEnter2D(Collision2D collision)
+        float movimientoHorizontal = Input.GetAxis("Horizontal");
+        _rb2d.velocity = new Vector2(movimientoHorizontal * moveSpeed, _rb2d.velocity.y);
+
+    }
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
@@ -54,23 +48,16 @@ public class Playercontroller : MonoBehaviour
             isGround = false;
         }
 
-
-
-
-
     }
-
-
-    }
-
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
 // Update is called once per frame
 
 //if (_sillueve && _edad >= 18)
