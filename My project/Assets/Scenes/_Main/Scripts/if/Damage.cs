@@ -9,7 +9,7 @@ public class Damage : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            gameManager.RestarVida(_Damage);
+            gameManager.Damage(_Damage);
         }
     }
 }

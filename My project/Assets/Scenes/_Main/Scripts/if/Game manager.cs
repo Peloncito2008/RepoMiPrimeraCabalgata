@@ -3,6 +3,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private int healthPlayer = 100;
+    [SerializeField] private PlayerControl playerControl;
+    [SerializeField] private UiManager UiManager;
     public void Sumarvida(int heal)
     {
         if (healthPlayer < 100)
@@ -16,7 +18,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("No curo");
         }
     }
-    public void RestarVida(int _Damage)
+    public void Damage(int _Damage)
 
     {
         if (healthPlayer > 0)
@@ -26,5 +28,48 @@ public class GameManager : MonoBehaviour
 
         }
 
+        if (healthPlayer <= 0)
+        {
+            Destroy(playerControl.gameObject);
+            Debug.Log("Se muriooo");
+        }
+        if (healthPlayer >= 80)
+        {
+            UiManager.ColorBarraDevida(Color.green);
+        }
+
+        if (healthPlayer < 80)
+
+        {
+            UiManager.ColorBarraDevida(Color.yellow);
+
+        }
+
+        if (healthPlayer == 20)
+        {
+
+            UiManager.ColorBarraDevida(Color.yellow);
+        }
+
+        if (healthPlayer < 20)
+        {
+            UiManager.ColorBarraDevida(Color.red);
+        }
+
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
